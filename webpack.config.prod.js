@@ -12,7 +12,7 @@ module.exports = merge(base, {
   mode: 'production',
   devtool: 'source-map',
   output: {
-    filename: 'static/js/main.[hash:8].js',
+    filename: 'static/js/bundle.[hash:8].js',
     chunkFilename: 'static/js/[name].chunk.[hash:8].js',
     path: path.resolve(__dirname, 'build'),
   },
