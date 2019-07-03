@@ -1,7 +1,6 @@
 .DS_Store
 .idea/
 .vscode/
-package-lock.json
 logs
 *.log
 npm-debug.log*
@@ -28,3 +27,4 @@ typings/
 *.tgz
 .yarn-integrity
 .env
+package-lock.json
