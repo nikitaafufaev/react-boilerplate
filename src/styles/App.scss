@@ -1,0 +1,13 @@
+$main-color: #27aedb;
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1 {
+  color: $main-color;
+  text-align: center;
+}

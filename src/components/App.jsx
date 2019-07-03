@@ -1,6 +1,7 @@
 import React from 'react';
 
-import './App.scss';
+import 'sanitize.css';
+import '../styles/App.scss';
 
 const App = () => {
   return (
