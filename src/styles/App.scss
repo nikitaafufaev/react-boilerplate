@@ -1,13 +1,14 @@
 $main-color: #27aedb;
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-h1 {
-  color: $main-color;
+.component {
   text-align: center;
+
+  &__img {
+    max-width: 200px;
+  }
+
+  &__title {
+    color: $main-color;
+    text-align: center;
+  }
 }

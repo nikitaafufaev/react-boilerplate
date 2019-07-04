@@ -1,35 +1,69 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
-const base = require('./webpack.config.base');
 
-module.exports = merge(base, {
+module.exports = {
   mode: 'development',
   devtool: 'cheap-module-source-map',
+  entry: './src/index.js',
   output: {
     filename: 'static/js/bundle.js',
-    chunkFilename: 'static/js/[name].chunk.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
       {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          'postcss-loader',
+        ],
       },
       {
-        test: /\.(s[ac]ss)$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        test: /\.s[ca]ss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
       {
-        test: /\.(png|svg|jpe?g|gif|ico)$/,
+        test: /\.(jpe?g|png|gif|ico|svg)$/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'static/assets',
+              outputPath: 'static/img',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff2?|ttf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'static/fonts',
             },
           },
         ],
@@ -46,7 +80,10 @@ module.exports = merge(base, {
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     port: 3000,
+    open: true,
     hot: true,
-    stats: 'minimal',
   },
-});
+  resolve: {
+    extensions: ['.js', '.json', '.jsx'],
+  },
+};
